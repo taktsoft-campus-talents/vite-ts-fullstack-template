@@ -1,26 +1,10 @@
 import { useState } from "react";
-
-type Todo<C> = {
-  id: number;
-  text: string;
-  done: boolean;
-  category: C;
-};
-
-type Category = "shopping" | "learning" | "hobby";
-
-type Todos = Todo<Category>[];
+import { Todos, Category, Todo } from "@library/types";
 
 export function useTodoList() {
   const [todos, setTodos] = useState<Todos>([]);
 
-  function addTodo(description: string, category: Category) {
-    const newTodo: Todo<Category> = {
-      id: Math.random(),
-      text: description,
-      category,
-      done: false,
-    };
+  function addTodo(newTodo: Todo<Category>) {
     setTodos((prev) => [...prev, newTodo]);
   }
 
